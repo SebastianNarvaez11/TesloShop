@@ -14,6 +14,7 @@ interface IStore {
     total: number;
     itemsInCart: number;
   };
+  clearCart: () => void;
 }
 
 export const useCartStore = create<IStore>()(
@@ -91,6 +92,10 @@ export const useCartStore = create<IStore>()(
           });
 
           set({ cart: updateCartProducts });
+        },
+
+        clearCart: () => {
+          set({ cart: [] });
         },
       }),
       { name: "shopping-cart" }

@@ -17,3 +17,8 @@ export * from "./ui/skeleton/OrderSummarySkeleton";
 export * from "./auth/LoginForm";
 export * from "./provider/AuthProvider";
 export * from "./auth/RegisterForm";
+export * from "./checkout/ProductsInCartCheckout";
+export * from "./checkout/AddresForm";
+export * from "./checkout/PlaceOrder";
+export * from "./checkout/PaypalButton";
+export * from "./products/ProductImage";

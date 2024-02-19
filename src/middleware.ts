@@ -10,20 +10,12 @@ import {
 
 const { auth } = NextAuth(authConfig);
 
-export default auth(async (req) => {
+export default auth((req) => {
   const { nextUrl } = req;
   const isAuthenticated = !!req.auth;
 
-  const session = await auth();
-  console.log({ session: session?.user, req: req.auth });
-
-  const role = req.auth?.user.role || "";
-
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isProtectedRoute = protectedRoutes.some((route) =>
-    nextUrl.pathname.startsWith(route)
-  );
-  const isAdminRoute = adminRoutes.some((route) =>
     nextUrl.pathname.startsWith(route)
   );
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
@@ -46,13 +38,15 @@ export default auth(async (req) => {
     );
   }
 
-  if (isProtectedRoute && isAuthenticated) {
-    if (isAdminRoute && role !== "admin") {
-      return Response.redirect(new URL("/403", nextUrl));
-    }
+  // esto aun no se puede implementar porque no tenemos acceso al role del usuario en el middleware
+  //  mientras toca hacer la redireccion para proteger la ruta directamente en un layout
+  // if (isProtectedRoute && isAuthenticated) {
+  //   if (isAdminRoute && role !== "admin") {
+  //     return Response.redirect(new URL("/403", nextUrl));
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   return null;
 });

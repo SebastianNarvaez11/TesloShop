@@ -9,7 +9,7 @@ export interface IProduct {
   tags: string[];
   title: string;
   // type: Type;
-  gender: "men" | "women" | "kid" | "unisex";
+  gender: ICategory;
 }
 
 export interface ICartProduct {
@@ -25,3 +25,9 @@ export interface ICartProduct {
 export type ICategory = "men" | "women" | "kid" | "unisex";
 export type Size = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
 export type Type = "shirts" | "pants" | "hoodies" | "hats";
+
+export interface ProductImage {
+  id: number;
+  url: string;
+  productId: string;
+}

@@ -1,12 +1,12 @@
 import type { NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "./lib/prisma";
 import bcryptjs from "bcryptjs";
 import { z } from "zod";
 
 export default {
   providers: [
-    Credentials({
+    CredentialsProvider({
       async authorize(credentials) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })

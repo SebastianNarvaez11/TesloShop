@@ -19,6 +19,7 @@ export const {
   callbacks: {
     async jwt({ token }) {
       //aqui puedo poner informacion en el token
+      if (!token.sub) throw Error("Token sin Id");
 
       const user = await prisma.user.findUnique({
         where: { email: token.email || "" },
@@ -38,7 +39,7 @@ export const {
     },
 
     async session({ session, token } :any) {
-      session.user.role = token.data.role
+      session.user = token.data
       return session;
     }
   },

@@ -1,4 +1,4 @@
-// rutas que no necesitan autenticacion
+// rutas que necesitan autenticacion
 export const protectedRoutes = ["/profile", "/checkout", "/admin"];
 
 //ruta que necesitan autenticacion y rol de "ADMIN"
