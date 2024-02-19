@@ -14,7 +14,7 @@ export const ProductsInCartCheckout = () => {
 
   useEffect(() => {
     setLoaded(true);
-  });
+  }, []);
 
   if (!loaded) {
     return <ProductsInCartSkeleton />;

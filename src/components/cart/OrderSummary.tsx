@@ -22,7 +22,7 @@ export const OrderSummary = () => {
     if (itemsInCart === 0 && isLoading === false) {
       router.replace("/empty");
     }
-  }, [itemsInCart, isLoading]);
+  }, [itemsInCart, isLoading, router]);
 
   return (
     <>

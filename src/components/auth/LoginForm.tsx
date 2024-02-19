@@ -1,23 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 
 import { IoInformationOutline } from "react-icons/io5";
 import { login } from "@/server-actions";
 import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
-import { useSearchParams } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+
+interface Props {
+  pathnameDestination?: string;
+}
 
 type FormInputs = {
   email: string;
   password: string;
 };
 
-export const LoginForm = () => {
-  const searchParams = useSearchParams();
-
+export const LoginForm: FC<Props> = ({ pathnameDestination }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
@@ -36,9 +37,7 @@ export const LoginForm = () => {
       return setErrorMessage(response.message || "Credenciales incorrectas");
     }
 
-    const urlDestination = new URLSearchParams(searchParams).get("callbackUrl");
-
-    window.location.replace(urlDestination || DEFAULT_LOGIN_REDIRECT);
+    window.location.replace(pathnameDestination || DEFAULT_LOGIN_REDIRECT);
   };
 
   return (

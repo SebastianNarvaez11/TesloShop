@@ -13,15 +13,14 @@ export const ProductStock: FC<Props> = ({ id }) => {
   const [stock, setStock] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const getStock = async () => {
-    const stock = await getStockProductById(id);
-    setStock(stock || 0);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const getStock = async () => {
+      const stock = await getStockProductById(id);
+      setStock(stock || 0);
+      setLoading(false);
+    };
     getStock();
-  }, []);
+  }, [id]);
 
   return (
     <>
